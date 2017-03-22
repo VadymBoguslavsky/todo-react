@@ -1,19 +1,36 @@
-/*import React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
-const Task = ({ task }) => <div>{task.name}</div>;
-
-const mapStateToProps = (state, ownProps) => ({
-  task: state.tracks.find(task => task.id === Number(ownProps.params.id))
-})
-
-export default connect(mapStateToProps)(Task);
-
-*/
 
 
+  const mapStateToProps = (state, ownProps) => ({
+      //task: state.tracks 
+    })
+const Task = (ownProps) => { 
+                
+
+  console.log("ownProps: ", ownProps); 
+
+  return (
+    <div>
+      <div>asdasd</div>
+    </div>
+  );
+}
 
 
+  
+
+
+
+export default connect(
+  mapStateToProps
+)(Task);
+
+
+
+
+/*
 import React from 'react'; 
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -90,3 +107,45 @@ class Task extends React.Component {
 export default  connect( 
 
 )(Task);
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Traks
+
+/*
+import React from 'react';
+import { connect } from 'react-redux';
+
+const Task = ({ task }) => <div>{task.name}</div>;
+
+const mapStateToProps = (state, ownProps) => ({
+  task: state.tracks.find(task => task.id === Number(ownProps.params.id))
+})
+
+export default connect(mapStateToProps)(Task);
+
+*/
+ 
+/*import React from 'react';
+import { connect } from 'react-redux';
+
+const Track = ({ track }) => <div>{track.name}</div>;
+
+const mapStateToProps = (state, ownProps) => ({
+  track: state.tracks.find(track => track.id === Number(ownProps.params.id))
+})
+
+export default connect(mapStateToProps)(Track);*/
+// // End Traks

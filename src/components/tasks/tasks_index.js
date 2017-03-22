@@ -1,40 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getTracks } from '../../actions/tracks';
 import Menu from '../layouts/menu';
 import TasksList from './tasks_list';
-import TaskNew from './task_new';
 import TaskForm from './form';
-import { Link } from 'react-router';
 
+const Tasks_Index = (ownProps) => { 
+  console.log("ownProps: ", ownProps);
 
-const Tasks_Index = () => { 
   return (
     <div>
       <Menu/>
       <div className="container">
         <div className="row"> 
-          <div className="col-md-12">
-            1
-            <TaskForm />
-            2
-          </div>
-          <div className="col-md-6">
+          <div className="col-md-7">
             <TasksList />
           </div>
 
-          <div className="col-md-offset-2 col-md-4">
-            <TaskNew />
+          <div className="col-md-offset-1 col-md-4">
+            <TaskForm />
           </div>
-
         </div>
       </div>
     </div>
   );
 }
 
-export default Tasks_Index;
+export default connect(
+  (state, ownProps) => ({
+    tasks: state.tasks,
+    ownProps
+  })
+)(Tasks_Index);
+
 
 
 /*import React from 'react';
@@ -141,31 +139,7 @@ export default connect(
 
 
 
-
-
-/*
-import React, { Component } from 'react';
-import Menu from './Menu';
  
-
-class App extends Component {
-  render() {
-    return ( 
-      <div>
-        <Menu />
-        <input type="text" placeholder="test" />
-        <button>Subit</button>
-      </div>
-    );
-  }
-}
-
-export default App;
-
-
-*/
-
-
 
 
 

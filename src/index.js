@@ -9,7 +9,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 import './index.css';
 import reducer from './reducers';
-import Track from './components/Track';
 import Task from './components/tasks/task_show';
 import Tasks_Index from './components/tasks/tasks_index';
 import Sign_Up from './components/authentication/sign_up'; 
@@ -22,7 +21,6 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={Tasks_Index}/>
       <Route path="/user/sign_up" component={Sign_Up}/>
-      <Route path="/tracks/:id" component={Track}/>
       <Route path="/task/:id" component={Task}/>
     </Router>
   </Provider>,

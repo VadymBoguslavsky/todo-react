@@ -13,6 +13,7 @@
   }
 ];*/
 
+//пейлоад
 export default function tasks(state = []/*initialState*/, action) {
   if (action.type === 'ADD_TRACK') {
     return [
@@ -20,12 +21,10 @@ export default function tasks(state = []/*initialState*/, action) {
       action.payload
     ];
   } else if (action.type === 'FETCH_TRACKS_SUCCESS') {
-    console.log("reduser/tracks.js action.payloa: ", action.payload)
-    var alphaNumeric = state.concat(action.payload);
-    console.log("alphaNumeric", alphaNumeric)
-    return  alphaNumeric;
-    //...state,
-    //action.payload
+    var state_new = state.concat(action.payload);
+    return  state_new;
+  }else if (action.type === 'DELETE_TASK') {
+      return state.filter(t => t.id !== action.payload) ;
   }
   return state;
 }

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 const Menu = ({ownProps}) => {
 
   let pathname = ownProps.routing.locationBeforeTransitions.pathname
-  console.log('ownProps pathname:', pathname);
+  //console.log('ownProps pathname:', pathname);
   
   function li(link_to, text) { 
     let class_active = "active"; 
