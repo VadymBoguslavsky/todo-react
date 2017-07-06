@@ -1,30 +1,34 @@
-/*const initialState = [
-  {
-    id: 1,
-    title: 'Enter Sandman'
-  },
-  {
-    id: 2,
-    title: 'Welcome Home'
-  },
-  {
-    id: 3,
-    title: 'Master of Puppets'
-  }
-];*/
+export default function tasks(state = {
+  tasks: []
+}, action) {
 
-//пейлоад
-export default function tasks(state = []/*initialState*/, action) {
-  if (action.type === 'ADD_TRACK') {
-    return [
-      ...state,
-      action.payload
-    ];
-  } else if (action.type === 'FETCH_TRACKS_SUCCESS') {
-    var state_new = state.concat(action.payload);
-    return  state_new;
-  }else if (action.type === 'DELETE_TASK') {
-      return state.filter(t => t.id !== action.payload) ;
+  switch (action.type) {
+    case "GET_TASKS":
+      return {
+        ...state,
+        tasks: action.payload
+      }
+
+    case "ADD_TASK":
+      return {
+        ...state,
+        tasks: [action.payload, ...state.tasks]
+      }
+
+    case "DELETE_TASK":
+      state.tasks = state.tasks.filter(t => t.id !== action.payload);
+      return {
+        ...state,
+        tasks: [...state.tasks]
+      }
+
+    case "COMPLITED_TASK":
+      state.tasks = state.tasks.filter(t => t.id !== action.payload.id);
+      return {
+        ...state,
+        tasks: [ action.payload, ...state.tasks ]
+      };
+    default:
+      return state;
   }
-  return state;
 }

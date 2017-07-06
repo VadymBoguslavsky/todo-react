@@ -31,11 +31,11 @@ const Menu = ({ownProps}) => {
           <div className="row">  
             <ul> 
               <div className="col-md-9 nav navbar-nav">
-                {li("/", 'Tracks')}
+                {li("/", 'Tasks')}
                 {li("/user/sign_up", 'Log in / Sign up')} 
               </div> 
               <div className="pull-right nav navbar-nav">
-                <li><a href="#">Выйти</a></li>
+                {li("/user/exit", 'Exit')}
               </div> 
             </ul> 
           </div>
