@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Menu from '../layouts/menu';
 import List from './list';
 import TaskForm from './form';
-
+import Edit from './edit';
 import {connect} from 'react-redux';
 
 import {fetchTasks} from '../../actions/tasks';
@@ -19,7 +19,7 @@ const Tasks_Index = ({user_id, onFetchTasks}) => {
             <div>
               <TaskForm />
             </div>
-
+            <Edit />
             <List />
           </div>
         </div>
@@ -30,7 +30,8 @@ const Tasks_Index = ({user_id, onFetchTasks}) => {
 }
 export default connect(
   state => ({
-    user_id: state.user.id
+    user_id: state.user.id,
+    editId: state.tasks.edit
   }),
   dispatch => ({
     onFetchTasks: (user_id) => {

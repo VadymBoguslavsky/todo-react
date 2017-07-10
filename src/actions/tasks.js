@@ -73,3 +73,16 @@ export function completedTask(id, active){
       })
   }
 }
+
+export function editTask(task){
+  return function(dispatch, getState) {
+    let body = JSON.stringify({todo: task, token: token});
+    axios.patch(`${API_URL}/${task.id}`, body, { headers: headers })
+      .then(res => {
+        dispatch({ type: 'EDIT_TASK', payload: res.data });
+      })
+      .catch(e => {
+        console.error("error: ", e);
+      })
+  }
+}

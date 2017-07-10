@@ -1,5 +1,6 @@
 export default function tasks(state = {
-  tasks: []
+  tasks: [],
+  edit: '',
 }, action) {
 
   switch (action.type) {
@@ -22,12 +23,26 @@ export default function tasks(state = {
         tasks: [...state.tasks]
       }
 
+    case "EDIT_TASK":
+      state.tasks = state.tasks.filter(t => t.id !== action.payload.id);
+      return {
+        ...state,
+        tasks: [action.payload, ...state.tasks]
+      }
+
     case "COMPLITED_TASK":
       state.tasks = state.tasks.filter(t => t.id !== action.payload.id);
       return {
         ...state,
-        tasks: [ action.payload, ...state.tasks ]
+        tasks: [action.payload, ...state.tasks]
       };
+
+    case "EDIT_ID":
+      return {
+        ...state,
+        edit: action.payload
+      }
+
     default:
       return state;
   }
