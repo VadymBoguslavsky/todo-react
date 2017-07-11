@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 import {addTask} from '../../actions/tasks';
 class TaskForm extends Component {
   constructor(props) {
@@ -9,10 +11,13 @@ class TaskForm extends Component {
       title: '',
       description: '',
       priority: '',
+      due_date: moment(),
+      start_date: moment(),
       user_id: this.props.user_id
     };
     this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this)
+    this.onChange = this.onChange.bind(this);
+    this.onChangeDueDate = this.onChangeDueDate.bind(this);
   }
 
   onSubmit(e) {
@@ -23,7 +28,16 @@ class TaskForm extends Component {
       title: '',
       description: '',
       priority: '',
+      due_date: '',
       user_id: this.props.user_id
+    });
+  }
+
+  onChangeDueDate (e) {
+    this.setState({
+      ...this.state,
+      due_date: e._d,
+      start_date: e
     });
   }
 
@@ -72,6 +86,19 @@ class TaskForm extends Component {
                 name="priority"
                 placeholder="Priority"
                 required={true}
+              />
+            </div>
+          </div>
+          <div className="form-group createlist">
+            <div className="form-input">
+              <label className="control-label">Date</label>
+              <br/>
+              <DatePicker
+                selected={this.state.start_date}
+                onChange={this.onChangeDueDate}
+                className="form-control"
+                dateFormat="YYYY/MM/DD"
+                minDate={moment()}
               />
             </div>
           </div>

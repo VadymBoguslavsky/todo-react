@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editTask } from '../../actions/tasks';
-
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 class Edit extends Component {
   componentWillReceiveProps(newProps) {
     if (newProps.tasks[0]) {
@@ -9,6 +11,7 @@ class Edit extends Component {
       this.setState({ title: newProps.tasks[0].title  });
       this.setState({ description: newProps.tasks[0].description });
       this.setState({ priority: newProps.tasks[0].priority });
+      this.setState({ due_date: newProps.tasks[0].due_date });
     }
   }
 
@@ -18,12 +21,12 @@ class Edit extends Component {
       id: '',
       title: '',
       description: '',
-      priority: ''
+      priority: '',
+      due_date: ''
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
-    console.log("!!!!!!!!!!!1")
+    this.onChangeDueDate = this.onChangeDueDate.bind(this);
   }
 
   onChange(e) {
@@ -35,6 +38,13 @@ class Edit extends Component {
     this.props.onEditTask(this.state);
   }
 
+  onChangeDueDate (e) {
+    this.setState({
+      ...this.state,
+      due_date: e._d,
+      start_date: e
+    });
+  }
 
   render() {
     if (this.props.tasks[0]) {
@@ -86,7 +96,20 @@ class Edit extends Component {
                 </span>
               </div>
             </div>
-
+            <div className="form-group">
+              <div className="input-group">
+                <DatePicker
+                  selected={this.state.start_date}
+                  onChange={this.onChangeDueDate}
+                  className="form-control"
+                  dateFormat="YYYY/MM/DD"
+                  minDate={moment()}
+                />
+                <span className="input-group-btn">
+                  <button className="btn btn-default" type="button">Date</button>
+                </span>
+              </div>
+            </div>
             <button type="submit" className="btn btn-primary">
               Edit task
             </button>

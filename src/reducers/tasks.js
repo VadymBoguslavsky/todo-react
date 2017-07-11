@@ -1,7 +1,8 @@
 export default function tasks(state = {
   tasks: [],
   edit: '',
-}, action) {
+  sortBy: {title: "priority", asc: "desc"}
+  }, action) {
 
   switch (action.type) {
     case "GET_TASKS":
@@ -42,7 +43,11 @@ export default function tasks(state = {
         ...state,
         edit: action.payload
       }
-
+    case "SORT_BY":
+      return {
+        ...state,
+        sortBy: action.payload
+      }
     default:
       return state;
   }

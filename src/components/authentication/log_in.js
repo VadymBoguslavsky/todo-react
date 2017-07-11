@@ -1,5 +1,6 @@
 import React  from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import Menu from '../layouts/menu';
 import { logIn } from '../../actions/users';
@@ -58,6 +59,8 @@ const Log_In = ({ onLogIn }) => {
                 Log in
               </button>
             </form>
+            <br/>
+            <Link to="/user/sign_up" className="btn btn-primary">Register</Link>
           </div>
         </div>
       </div>

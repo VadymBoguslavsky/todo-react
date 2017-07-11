@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {deleteTask, completedTask, editTask} from '../../actions/tasks';
+import InlineEdit from 'react-edit-inline';
 class List extends Component {
   constructor(props) {
     super(props);
-
+    this.dataChanged = this.dataChanged.bind(this);
     let checked = [];
     for (var i = 0; i < this.props.tasks.length; i++) {
       checked = checked.concat(
@@ -21,6 +22,10 @@ class List extends Component {
     };
 
   }
+
+  dataChanged(data) {
+    this.setState({...data})
+  };
 
   thisFilter() {
     let Tasks_completed = [];
@@ -56,18 +61,19 @@ class List extends Component {
                   return (
                     <div key={task.id}>
                       <li className="li_height list-group-item hover1 for_icons">
-                        <div className="col-md-3">{  task.title }</div>
-                        <div className="col-md-3">{  task.description }</div>
-                        <div className="col-md-3">{  task.priority }</div>
+                        <div className="col-md-2">{  task.title }</div>
+                        <div className="col-md-2">{  task.description }</div>
+                        <div className="col-md-2">{  task.priority }</div>
+                        <div className="col-md-2">{  task.due_date }</div>
                         <span onClick={() => this.props.onDeleteTask(task.id)}
-                              className="glyphicon glyphicon-trash" title="Delete">
+                              className="glyphicon glyphicon-trash col-md-1" title="Delete">
                         </span>
                         <span onClick={() => this.props.onCompletedTask(task.id, task.completed)}
-                              className={task.completed ? "glyphicon glyphicon-minus" : "glyphicon glyphicon-check"}
+                              className={task.completed ? "glyphicon glyphicon-minus " : "glyphicon glyphicon-check"}
                               title={task.completed ? "Mark completed" : "Mark completed"}>
                         </span>
                         <span onClick={() => this.props.onEditTask(this.props.editId, task.id)}
-                              className="glyphicon glyphicon-pencil" title="Edit task">
+                              className="glyphicon glyphicon-pencil col-md-1" title="Edit task">
                         </span>
                       </li>
                     </div>
@@ -86,18 +92,19 @@ class List extends Component {
                   return (
                     <div key={task.id}>
                       <li className="li_height list-group-item hover1 for_icons">
-                        <div className="col-md-3">{  task.title }</div>
-                        <div className="col-md-3">{  task.description }</div>
-                        <div className="col-md-3">{  task.priority }</div>
+                        <div className="col-md-2">{  task.title }</div>
+                        <div className="col-md-2">{  task.description }</div>
+                        <div className="col-md-2">{  task.priority }</div>
+                        <div className="col-md-2">{  task.due_date }</div>
                         <span onClick={() => this.props.onDeleteTask(task.id)}
-                              className="glyphicon glyphicon-trash" title="Delete">
+                              className="glyphicon glyphicon-trash col-md-1" title="Delete">
                         </span>
                         <span onClick={() => this.props.onCompletedTask(task.id, task.completed)}
                               className={task.completed ? "glyphicon glyphicon-minus" : "glyphicon glyphicon-check"}
                               title={task.completed ? "Mark completed" : "Mark completed"}>
                         </span>
                         <span onClick={() => this.props.onEditTask(this.props.editId, task.id)}
-                              className="glyphicon glyphicon-pencil" title="Edit task">
+                              className="glyphicon glyphicon-pencil col-md-1" title="Edit task">
                         </span>
                       </li>
                     </div>
@@ -126,11 +133,9 @@ export default connect(
     },
     onEditTask: (editId, id) => {
       if (editId === id)
-        editId = ""
+        editId = "";
       else
-        editId = id
-
-      console.log(editId)
+        editId = id;
 
       dispatch({type: 'EDIT_ID', payload: editId});
     }

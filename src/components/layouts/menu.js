@@ -32,8 +32,7 @@ const Menu = ({ownProps}) => {
             <ul> 
               <div className="col-md-9 nav navbar-nav">
                 {li("/", 'Tasks')}
-                {li("/user/sign_up", 'Log in / Sign up')} 
-              </div> 
+              </div>
               <div className="pull-right nav navbar-nav">
                 {li("/user/exit", 'Exit')}
               </div> 
@@ -50,27 +49,3 @@ export default connect(
     ownProps
   })
 )(Menu);
-
- 
- 
-
-/*
-  
-
-const { router } = this.props; 
-const isActive = router.isActive.bind(router); 
- 
-
- 
- return (
-      <div>
-        <Link to="/"> / </Link>
-        <Link to="/about"> About </Link>
-        <Link to="/App"> App </Link>
-        <Link to="/Home"> Home </Link>
-        <Link to="/RegistrationForm"> RegistrationForm </Link>
-        <Link to="/Dropdown"> Dropdown </Link>
-      </div>
-    );
-
-*/ 
