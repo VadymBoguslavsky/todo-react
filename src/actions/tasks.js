@@ -80,9 +80,7 @@ export function sortTasks(sortBy){
     axios.post(`${API_URL}/sort`, body, { headers: headers })
       .then(res => {
         if (res.status === 200) {
-          dispatch({ type: 'ADD_ALERT', payload: { type: "success", text: `Sort: ${sortBy.title} and ${sortBy.asc}` } });
           dispatch({ type: 'SORT_BY', payload: sortBy });
-          dispatch({ type: 'FETCH_TRACKS_SUCCESS', payload: res.data });
         }
       })
       .catch(e => {
