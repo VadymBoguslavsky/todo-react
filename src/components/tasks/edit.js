@@ -35,6 +35,8 @@ class Edit extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    console.log(this.state, "ertyui")
+    this.state.due_date= this.state.due_date + 1;
     this.props.onEditTask(this.state);
   }
 

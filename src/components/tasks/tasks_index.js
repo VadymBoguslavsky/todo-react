@@ -6,7 +6,7 @@ import TaskForm from './form';
 import Edit from './edit';
 import {connect} from 'react-redux';
 
-import {fetchTasks} from '../../actions/tasks';
+import {fetchTasks, sortTasks} from '../../actions/tasks';
 
 const Tasks_Index = ({user_id, onFetchTasks}) => {
   if (user_id) {
@@ -31,7 +31,8 @@ const Tasks_Index = ({user_id, onFetchTasks}) => {
 export default connect(
   state => ({
     user_id: state.user.id,
-    editId: state.tasks.edit
+    editId: state.tasks.edit,
+    sortBy: state.tasks.sortBy
   }),
   dispatch => ({
     onFetchTasks: (user_id) => {

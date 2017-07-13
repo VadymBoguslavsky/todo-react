@@ -79,8 +79,10 @@ export function sortTasks(sortBy){
     let body = JSON.stringify({ token: token, sortByTitle: sortBy.title, sortByAsc: sortBy.asc });
     axios.post(`${API_URL}/sort`, body, { headers: headers })
       .then(res => {
+        console.log(res);
         if (res.status === 200) {
           dispatch({ type: 'SORT_BY', payload: sortBy });
+          dispatch({ type: 'FETCH_TODOS_SUCCESS', payload: res.data });
         }
       })
       .catch(e => {

@@ -5,6 +5,12 @@ export default function tasks(state = {
   }, action) {
 
   switch (action.type) {
+    case "FETCH_TODOS_SUCCESS":
+      return {
+        ...state,
+        tasks: action.payload
+      };
+
     case "GET_TASKS":
       return {
         ...state,
