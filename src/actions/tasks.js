@@ -12,9 +12,7 @@ export function fetchTasks(user_id){
     axios.get(`${API_URL}`, { headers, body })
       .then(res => {
         if (res.status === 200) {
-          console.log(res);
           dispatch({ type: 'GET_TASKS', payload: res.data });
-          // dispatch({ type: 'LOADER' });
         }
       })
       .catch(e => {
@@ -44,11 +42,9 @@ console.log(body);
     axios.post(API_URL, body, { headers: headers })
       .then(res => {
         dispatch({ type: 'ADD_TASK', payload: res.data });
-
       })
       .catch(e => {
         console.error(e);
-
       })
   }
 }
@@ -60,7 +56,6 @@ export function completedTask(id, active){
     } else {
       active = true
     }
-
     let task = {id: id, completed: active};
     let body = {todo: task, token: token};
 

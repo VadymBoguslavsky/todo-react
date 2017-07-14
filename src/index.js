@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux' 
+import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
@@ -49,9 +49,7 @@ if(token.token) {
   );
 }
 
-
-//показує що змінилося в store
 store.subscribe(() => {
-  console.log('змінився store', store.getState());
+  console.log(store.getState());
 })
 

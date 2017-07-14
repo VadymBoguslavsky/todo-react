@@ -4,7 +4,6 @@ import { browserHistory } from 'react-router';
 import cookie from 'react-cookies'
 
 const API_URL = `https://react-rs-api.herokuapp.com/users`;
-// const API_URL = `https://jarvis-rails-api.herokuapp.com/users`;
 const headers = { 'Content-Type': 'application/json', }
 const token = cookie.load('token')
 
@@ -32,7 +31,6 @@ export function exitUser(){
       axios.post(`${API_URL}/destroy_token`, body, { headers: headers })
         .then(res => {
           dispatch({ type: 'DELETE_TOKEN_USER', payload: res.data });
-          // dispatch({ type: 'ADD_ALERT', payload: { type: "success", text: "Exit..." } });
           cookie.remove('token', { path: '/' });
 
           browserHistory.push('#/users/log_in');
