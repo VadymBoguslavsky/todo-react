@@ -3,7 +3,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import cookie from 'react-cookies'
 
-const API_URL = `http://localhost:3000/users`;
+const API_URL = `https://react-rs-api.herokuapp.com/users`;
 // const API_URL = `https://jarvis-rails-api.herokuapp.com/users`;
 const headers = { 'Content-Type': 'application/json', }
 const token = cookie.load('token')
