@@ -54,13 +54,10 @@ export function signUp(user){
     axios.post(API_URL, user, { headers: headers })
       .then(res => {
         if (res.status === 200) {
-          dispatch({ type: 'ADD_ALERT', payload: { type: "success", text: "Confirm your email address" } });
           browserHistory.push('#/users/log_in');
           setTimeout(() => {
             location.reload()
           }, 2000)
-        } else if (res.status === 207) {
-          dispatch({ type: 'ADD_ALERT', payload: { type: "danger", text: `${res.data.message}` } });
         }
       })
       .catch(e => {
@@ -73,7 +70,6 @@ export function signUp(user){
             console.log("alert_text", alert_text)
           })
         }
-        dispatch({ type: 'ADD_ALERT', payload: { type: "danger", text: <div>Could not create user<br /> {alert_text}</div> }});
       })
   }
 }
@@ -87,14 +83,11 @@ export function logIn(session){
         console.log(res)
         if (res.status === 201) {
           cookie.save('token', res.data.token, { path: '/' });
-          dispatch({ type: 'ADD_ALERT', payload: { type: "success", text: `${res.data.message}` } });
 
           browserHistory.push('#/');
           setTimeout(() => {
             location.reload()
           }, 1000)
-        } else if (res.status === 207) {
-          dispatch({ type: 'ADD_ALERT', payload: { type: "danger", text: `${res.data.message}` } });
         }
       })
       .catch(e => {
@@ -109,14 +102,10 @@ export function emailConfirmation(email_token){
       .then(res => {
         console.log(res)
         if (res.status === 200) {
-          dispatch({ type: 'ADD_ALERT', payload: { type: "success", text: `${res.data.message}` } });
-
           browserHistory.push('#/users/log_in');
           setTimeout(() => {
             location.reload()
           }, 1500)
-        } else if (res.status === 207) {
-          dispatch({ type: 'ADD_ALERT', payload: { type: "danger", text: `${res.data.message}` } });
         }
       })
       .catch(e => {
