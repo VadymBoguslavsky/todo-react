@@ -1,6 +1,6 @@
 import axios from 'axios';
 import cookie from 'react-cookies';
-const API_URL = `https://react-rs-api.herokuapp.com/todos`;
+const API_URL = `https://todo-react-api.herokuapp.com/todos`;
 let headers = { 'Content-Type': 'application/json', };
 const token = cookie.load('token');
 
